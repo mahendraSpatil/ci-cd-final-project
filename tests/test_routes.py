@@ -2,6 +2,8 @@
 Account Service API Test Suite
 """
 import unittest
+
+
 from service import app
 from service.models import db
 from service.common import status
