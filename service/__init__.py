@@ -29,4 +29,3 @@ app.logger.info(70 * "*")
 # Import routes and error handlers after app is initialized
 from service import routes  # noqa: E402, F401
 from service.common import error_handlers  # noqa: E402, F401
-
