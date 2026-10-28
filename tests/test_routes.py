@@ -131,3 +131,4 @@ class TestAccountService(unittest.TestCase):
         """Test calling endpoint with disallowed method"""
         response = self.client.delete(BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
