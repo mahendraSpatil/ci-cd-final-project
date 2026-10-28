@@ -126,7 +126,6 @@ class TestAccountService(unittest.TestCase):
         """Test sending unsupported media type"""
         response = self.client.post(BASE_URL, data="text string", content_type="text/plain")
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
-
     def test_method_not_allowed(self):
         """Test calling endpoint with disallowed method"""
         response = self.client.delete(BASE_URL)
