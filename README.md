@@ -1,6 +1,6 @@
 # ci-cd-final-project
 #cicd-final-project
-[![CI Build](https://github.com/mahendraSpatil/ci-cd-pipeline-final-project/actions/workflows/workflow.yml/badge.svg)](https://github.com/mahendraSpatil/cd-pipeline-final-project/actions/workflows/workflow.yml)
+[![CI Build](https://github.com/mahendraSpatil/ci-cd-pipeline-final-project/actions/workflows/workflow.yml/badge.svg)](https://github.com/mahendraSpatil/ci-cd-pipeline-final-project/actions/workflows/workflow.yml)
 [![OpenShift Pipelines](https://img.shields.io/badge/OpenShift-Tekton_CI%2FCD-red?logo=redhatopenshift)](https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines)
 [![Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
