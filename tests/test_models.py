@@ -86,4 +86,3 @@ class TestAccountModel(unittest.TestCase):
         account.name = "Test"
         account.id = 1
         self.assertEqual(repr(account), "<Account Test id=[1]>")
-
