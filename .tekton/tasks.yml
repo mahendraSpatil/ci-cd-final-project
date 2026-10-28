@@ -3,54 +3,27 @@ kind: Task
 metadata:
   name: cleanup
 spec:
-  description: Cleans workspace directory before cloning fresh code
   workspaces:
     - name: source
   steps:
     - name: clean
-      image: alpine:3.18
-      workingDir: $(workspaces.source.path)
-      securityContext:
-        runAsUser: 0
+      image: alpine:latest
       script: |
-        #!/usr/bin/env sh
-        set -e
-        echo "=============================================="
-        echo "Cleaning previous workspace contents..."
-        echo "Directory: $(workspaces.source.path)"
-        echo "=============================================="
-        rm -rf *
-        echo "Workspace cleanup completed successfully."
+        #!/bin/sh
+        rm -rf $(workspaces.source.path)/*
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: nose
 spec:
-  description: Runs Python unit testing and code coverage using nosetests
   workspaces:
     - name: source
-  params:
-    - name: args
-      type: string
-      description: Arguments to pass to nosetests
-      default: "-v --with-spec --spec-color --with-coverage --cover-package=service"
   steps:
     - name: nosetests
       image: python:3.9-slim
       workingDir: $(workspaces.source.path)
       script: |
-        #!/usr/bin/env bash
-        set -e
-        echo "=============================================="
-        echo "Installing Python dependencies..."
-        echo "=============================================="
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
-        fi
-        echo "=============================================="
-        echo "Running Unit Tests..."
-        echo "=============================================="
-        nosetests $(params.args) || pytest --cov=service --cov-report=term-missing
-
+        #!/bin/sh
+        pip install -r requirements.txt
+        nosetests -v --with-spec --spec-color --with-coverage --cover-package=service
