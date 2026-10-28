@@ -3,7 +3,7 @@ Account Service API Test Suite
 """
 import unittest
 from service import app
-from service.models import db, Account
+from service.models import db, DataValidationError
 from service.common import status
 
 BASE_URL = "/accounts"
@@ -131,4 +131,3 @@ class TestAccountService(unittest.TestCase):
         """Test calling endpoint with disallowed method"""
         response = self.client.delete(BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-
