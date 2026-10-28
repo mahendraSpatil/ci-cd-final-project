@@ -1,6 +1,5 @@
 # cicd-final-project
-# Accounts Microservice - CI/CD Final Project
-
+#ci-cd-final-project
 [![CI Build](https://github.com/mahendraSpatil/ci-cd-pipeline-final-project/actions/workflows/workflow.yml/badge.svg)](https://github.com/mahendraSpatil/cd-pipeline-final-project/actions/workflows/workflow.yml)
 [![OpenShift Pipelines](https://img.shields.io/badge/OpenShift-Tekton_CI%2FCD-red?logo=redhatopenshift)](https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines)
 [![Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
