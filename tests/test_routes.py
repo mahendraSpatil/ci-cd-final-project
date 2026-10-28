@@ -90,4 +90,46 @@ class TestAccountService(unittest.TestCase):
         self.client.post(BASE_URL, json=ACCOUNT_PAYLOAD, content_type="application/json")
         response = self.client.get(BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        data
+        data = response.get_json()
+        self.assertEqual(len(data), 1)
+
+    def test_update_account(self):
+        """Test updating an existing Account"""
+        resp = self.client.post(BASE_URL, json=ACCOUNT_PAYLOAD, content_type="application/json")
+        account_id = resp.get_json()["id"]
+        updated_payload = dict(ACCOUNT_PAYLOAD)
+        updated_payload["name"] = "Jane Updated"
+        response = self.client.put(
+            f"{BASE_URL}/{account_id}",
+            json=updated_payload,
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.get_json()
+        self.assertEqual(data["name"], "Jane Updated")
+
+    def test_update_account_not_found(self):
+        """Test updating an Account that does not exist"""
+        response = self.client.put(
+            f"{BASE_URL}/0",
+            json=ACCOUNT_PAYLOAD,
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_delete_account(self):
+        """Test deleting an Account"""
+        resp = self.client.post(BASE_URL, json=ACCOUNT_PAYLOAD, content_type="application/json")
+        account_id = resp.get_json()["id"]
+        response = self.client.delete(f"{BASE_URL}/{account_id}")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_unsupported_media_type(self):
+        """Test sending unsupported media type"""
+        response = self.client.post(BASE_URL, data="text string", content_type="text/plain")
+        self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+
+    def test_method_not_allowed(self):
+        """Test calling endpoint with disallowed method"""
+        response = self.client.delete(BASE_URL)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
