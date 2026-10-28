@@ -30,8 +30,6 @@ def index():
 def health():
     """Health status endpoint for probes"""
     return jsonify(dict(status="OK")), status.HTTP_200_OK
-
-
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
