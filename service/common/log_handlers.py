@@ -17,4 +17,3 @@ def init_logging(app, logger_name):
     for handler in app.logger.handlers:
         handler.setFormatter(formatter)
     app.logger.info("Logging setup complete")
-
